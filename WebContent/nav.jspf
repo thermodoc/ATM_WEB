@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATM APPLICATION</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .bs-example{
+       
+    }
+</style>
+</head>
+<body>
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand bg">ATM APPLICATION</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="index.jsp" class="nav-item nav-link active">Home</a>
+                                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Customer operations</a>
+                    <div class="dropdown-menu">
+                        <a href="Checkbalance.jsp" class="dropdown-item">Check Balance</a>
+                        <a href="Withdraw.jsp" class="dropdown-item">Withdraw</a>
+                        <a href="Transfer.jsp" class="dropdown-item">Transfer Money</a>
+                         <a href="Ministatement.jsp" class="dropdown-item">Ministatement</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin Operations</a>
+                    <div class="dropdown-menu">
+                        <a href="Loadcash.jsp" class="dropdown-item">Load Cash</a>
+                        <a href="Customerdatabase.jsp" class="dropdown-item">Customer Database</a>
+                        <a href="Showbalance.jsp" class="dropdown-item">Show Balance</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navbar-nav">
+                <a href="About.jsp" class="nav-item nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>
