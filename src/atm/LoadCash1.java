@@ -36,10 +36,11 @@ public class LoadCash1 extends HttpServlet {
 		Balance.checkifBalalanceIsNull();
 		int denomination = Integer.parseInt(request.getParameter("denomination"));
 		Balance.loadBalance(denomination);
+		
 		out.println("Succesfully Loaded cash in the ATM");
 		request.setAttribute("balance","Succesfully Loaded cash in the ATM"); 
 		
-		RequestDispatcher rd = request.getRequestDispatcher("LoadbalanceDeno.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("Loadcash2.jsp");
 		rd.forward(request, response);
 	}
 

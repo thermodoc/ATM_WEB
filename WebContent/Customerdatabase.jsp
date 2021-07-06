@@ -32,32 +32,7 @@
 
 </form>
 </div>
-<pre>
-<%
-try{
-List<Customer> customer= (ArrayList) request.getAttribute("customer");
 
-%>
-<table cellspacing="3" cellpadding="3">
-
-<tr><th>Account Number</th><th>Account Holder</th><th>PIN</th><th>Balance</th></tr>
-<%
-for(Customer cu : customer)
-{
-%>
-	<tr><td><%=cu.accountNumber%></td>
-		<td><%=cu.accountHolder%></td>
-		<td><%=cu.PIN%></td>
-		<td><%=cu.balance%></td>
-	</tr>
-	<%}
-}
-catch(NullPointerException e)
-{
-
-}
-%>
-</pre>
 </table>
 
 

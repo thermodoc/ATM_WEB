@@ -38,14 +38,14 @@ public static int hundredCounter=0;
 	public static void updateBalance()
 	{
 		try
-		{	String updateBalance="update balance set account_balance = ? , thousands = ? , fivehundreds = ? , hundreds = ? where id = '0'";
+		{	String updateBalance="update balance set  thousands = ? , fivehundreds = ? , hundreds = ? where id = '0'";
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm","root","whoami8888");
 			PreparedStatement pe=con.prepareStatement(updateBalance);
 			
-			pe.setInt(1,totalCash);
-			pe.setInt(2, thousandCounter);
-			pe.setInt(3,fiveHundredCounter );
-			pe.setInt(4, hundredCounter);
+			
+			pe.setInt(1, thousandCounter);
+			pe.setInt(2,fiveHundredCounter );
+			pe.setInt(3, hundredCounter);
 			pe.executeUpdate();
 			
 		}
@@ -65,12 +65,13 @@ public static int hundredCounter=0;
 			ResultSet re =Stmnt.executeQuery(Balance_select_statement);
 			while(re.next())
 			{	
-				 totalCash=re.getInt(2);
-				 thousandCounter=re.getInt(3);;
-				 fiveHundredCounter=re.getInt(4);
-				 hundredCounter=re.getInt(5);
+				 
+				 thousandCounter=re.getInt(2);;
+				 fiveHundredCounter=re.getInt(3);
+				 hundredCounter=re.getInt(4);
 				
 			}
+			totalCash=(thousandCounter*1000)+(fiveHundredCounter*500)+(hundredCounter*100);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -110,15 +111,13 @@ public static int hundredCounter=0;
 	{
 		
 		getBalanceFromDB();
-		totalCash=totalCash+(n*100000);
+		//totalCash=totalCash+(n*100000);
 		thousandCounter=thousandCounter + (n*20);
 		fiveHundredCounter=fiveHundredCounter+ (n*100);
 		hundredCounter=hundredCounter+ (n*300);
+		totalCash=(thousandCounter*1000)+(fiveHundredCounter*500)+(hundredCounter*100);
 		updateBalance();
-		
-		
-		
-	}
+}
 	public static String  withDraw(int tempWithdraw,int  tempAcc)
 	{
 		getBalanceFromDB();
@@ -165,7 +164,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					if(tempWithdraw/100 <= hundredCounter)
 					{
 						hundredCounter = hundredCounter - (tempWithdraw/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -186,7 +185,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					{
 						fiveHundredCounter = fiveHundredCounter - ((tempWithdraw)/500);
 						hundredCounter = hundredCounter - (((tempWithdraw)%500)/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -207,7 +206,7 @@ List<Customer> customer = new ArrayList<Customer>();
 				{
 					fiveHundredCounter = fiveHundredCounter-(tempWithdraw/500);
 					hundredCounter = hundredCounter-((tempWithdraw%500)/100);	
-					Balance.totalCash=Balance.totalCash-tempWithdraw;
+					//Balance.totalCash=Balance.totalCash-tempWithdraw;
 					Balance.updateBalance();
 					customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 					Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -222,7 +221,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					if(tempWithdraw-1000<500)
 					{
 						hundredCounter = hundredCounter-((tempWithdraw-1000)/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -236,7 +235,7 @@ List<Customer> customer = new ArrayList<Customer>();
 						{	
 							fiveHundredCounter = fiveHundredCounter - 6;
 							hundredCounter=  hundredCounter - ((tempWithdraw-4000)/100);
-							Balance.totalCash=Balance.totalCash-tempWithdraw;
+							//Balance.totalCash=Balance.totalCash-tempWithdraw;
 							Balance.updateBalance();
 							customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 							Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -249,7 +248,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					{
 						fiveHundredCounter = fiveHundredCounter - ((tempWithdraw-1000)/500);
 						hundredCounter = hundredCounter - (((tempWithdraw-1000)%500)/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -270,7 +269,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					if(tempWithdraw/100 <= hundredCounter)
 					{
 						hundredCounter=hundredCounter-(tempWithdraw/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -291,7 +290,7 @@ List<Customer> customer = new ArrayList<Customer>();
 					{
 						fiveHundredCounter=fiveHundredCounter-((tempWithdraw)/500);
 						hundredCounter=hundredCounter-(((tempWithdraw)%500)/100);
-						Balance.totalCash=Balance.totalCash-tempWithdraw;
+						//Balance.totalCash=Balance.totalCash-tempWithdraw;
 						Balance.updateBalance();
 						customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 						Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -320,7 +319,7 @@ List<Customer> customer = new ArrayList<Customer>();
 			{
 				fiveHundredCounter=fiveHundredCounter-((tempWithdraw-5000)/500);
 				hundredCounter=hundredCounter-(((tempWithdraw-5000)%500)/100);	
-				Balance.totalCash=Balance.totalCash-tempWithdraw;
+				//Balance.totalCash=Balance.totalCash-tempWithdraw;
 				Balance.updateBalance();
 				customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 				Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -332,7 +331,7 @@ List<Customer> customer = new ArrayList<Customer>();
 			{
 				fiveHundredCounter=fiveHundredCounter-((tempWithdraw-5000)/500);
 				hundredCounter=hundredCounter-(((tempWithdraw-5000)%500)/100);	
-				Balance.totalCash=Balance.totalCash-tempWithdraw;
+				//Balance.totalCash=Balance.totalCash-tempWithdraw;
 				Balance.updateBalance();
 				customer.get(i).balance=customer.get(i).balance-tempWithdraw;
 				Ministatement.updateMiniStatementDebit(tempWithdraw,tempAcc);
@@ -364,11 +363,11 @@ List<Customer> customer = new ArrayList<Customer>();
 	
 		while(re.next())
 		{
-			
+			arrayret.add((thousandCounter*1000)+(fiveHundredCounter*500)+(hundredCounter*100));
 			arrayret.add(Integer.parseInt(re.getString(2)));
 			arrayret.add(Integer.parseInt(re.getString(3)));
 			arrayret.add(Integer.parseInt(re.getString(4)));
-			arrayret.add(Integer.parseInt(re.getString(5)));
+			
 		}
 
 		}

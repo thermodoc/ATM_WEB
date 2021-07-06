@@ -9,7 +9,12 @@
 
 </head>
 <body>
-
+<% String accNo =(String) session.getAttribute("No");
+ if (accNo==null) {
+	String url = response.encodeRedirectURL("Transfer.jsp");
+	response.sendRedirect(url);
+	}
+ %>
 <%@ include file="navcustomer.jspf" %>
 <div class="login-form">
  <link rel="stylesheet" href="style.css">
@@ -24,28 +29,14 @@
     <input type="number" name="amount" required class="form-control" placeholder="INR"/>
     </div>
    <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit
+            </button>
         </div>
         
 
 </form>
 </div>
 
-<%
-   String accNo =(String) session.getAttribute("No");%>
-<% if (accNo==null) {
-	String url = response.encodeRedirectURL("Transfer.jsp");
-	response.sendRedirect(url);
-	}
-
-	   String withDraw =(String) request.getAttribute("debit");
-%>
-
-	
-<div style="text-align: center;">
-    <pre><%=withDraw %></pre>
-</div>
-</form>
 
 
 

@@ -37,6 +37,8 @@ public class MinistatementServlet extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("Ministatement.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -57,7 +59,7 @@ public class MinistatementServlet extends HttpServlet implements Servlet {
 		if(isCustomer)
 		{	int index =Customer.customerIndex( Integer.parseInt(accountNo));
 		request.setAttribute("customer", customer.get(i));
-		RequestDispatcher rd = request.getRequestDispatcher("Ministatement.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("Ministatement1.jsp");
 		rd.forward(request, response);
 		
 //			

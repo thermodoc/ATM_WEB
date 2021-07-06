@@ -34,7 +34,8 @@ public class TransferServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("Transfer3.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class TransferServlet2 extends HttpServlet {
 	
 		request.setAttribute("debit",Withdraw);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Transfer2.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("Transfer3.jsp");
 		rd.forward(request, response);
 	}
 

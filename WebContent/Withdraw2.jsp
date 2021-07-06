@@ -12,47 +12,28 @@
 
 <%@ include file="navcustomer.jspf" %>
 
-
+<%  String accNo =(String) session.getAttribute("No");
+if (accNo==null) {
+	
+	String url = response.encodeRedirectURL("Withdraw.jsp");
+	response.sendRedirect(url);
+	}%>
 <div class="login-form">
 
 <form action="WithdrawServlet2" method="post" >
 <h2 class="text-center">Withdraw</h2>   
   <div class="form-group">   
    Enter Amount to Withdraw        
-    <input type="number" name="amount" required = "required" class="form-control" placeholder="Account Number"/>
+    <input type="number" name="amount" required = "required" class="form-control" placeholder="INR"/>
    </div>
 
 
    <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block" name="submit" value="submit">Enter</button>
         </div>
-        
 
 </form>
 </div>
-<%
-   String accNo =(String) session.getAttribute("No");%>
-<% if (accNo==null) {
-	String url = response.encodeRedirectURL("Withdraw.jsp");
-	response.sendRedirect(url);
-	}
-
-	   String withDraw =(String) request.getAttribute("debit");
-	   if (withDraw==null)
-	   {
-		   withDraw="";
-	   }
-	   %>
-
-	
-	<div style="text-align: center;">
-   <pre style : ><%=withDraw %></pre>
-   </div>
-
-
-
-
-
 </body>
 
 </body>

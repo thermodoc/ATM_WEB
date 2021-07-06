@@ -37,6 +37,8 @@ public class CheckBalanceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("Checkbalance.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -72,7 +74,7 @@ public class CheckBalanceServlet extends HttpServlet {
 		if(isCustomer)
 		{	int index =Customer.customerIndex( Integer.parseInt(accountNo));
 			request.setAttribute("balance", "The Balance in "+customer.get(index).accountNumber+" is "+customer.get(index).balance);
-			RequestDispatcher rd = request.getRequestDispatcher("Checkbalance.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Checkbalance1.jsp");
 			rd.forward(request, response);
 			
 		

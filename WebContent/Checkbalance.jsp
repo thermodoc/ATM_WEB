@@ -39,14 +39,7 @@ response.setDateHeader ("Expires", 0);
 </form>
 </div>
 
-<%
-String result= (String) request.getAttribute("balance");
-if(result==null)
-{
-result="";
-}
-%>
-<pre><%=result %></pre>
+
 
 
 

@@ -44,7 +44,7 @@ public class LoadCash extends HttpServlet {
 		String pass = request.getParameter("pass");
 		if(Admin.isAdmin(uname, pass))
 		{
-			HttpSession session = request.getSession(true);
+			HttpSession session = request.getSession();
 			session.setAttribute("name",uname);
 			String url = response.encodeRedirectURL("LoadbalanceDeno.jsp");
 					
